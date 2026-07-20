@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connectivity Consultant – Aethel Connect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1F3C;
+      --green: #2D7A22;
+      --rule: #C8D4C6;
+      --text: #1C1C1C;
+      --muted: #5A6370;
+      --bg: #F9FAF8;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── PAGE SHELL ── */
+    .page {
+      max-width: 760px;
+      margin: 40px auto 60px;
+      background: var(--white);
+      border: 1px solid #D8DDD6;
+      border-top: 4px solid var(--navy);
+    }
+
+    @media (max-width: 800px) {
+      .page { margin: 0; border-left: none; border-right: none; border-top: 4px solid var(--navy); }
+    }
+
+    /* ── HEADER ── */
+    .advert-header {
+      padding: 36px 48px 28px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    @media (max-width: 600px) {
+      .advert-header { padding: 28px 24px 22px; flex-direction: column; gap: 16px; }
+    }
+
+    .org-name {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .job-title {
+      font-family: 'Lora', serif;
+      font-weight: 700;
+      font-size: clamp(1.45rem, 4vw, 1.85rem);
+      color: var(--navy);
+      line-height: 1.2;
+    }
+    .header-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 12px;
+    }
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .meta-row svg {
+      width: 14px; height: 14px;
+      stroke: var(--green); fill: none;
+      stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .vacancy-badge {
+      flex-shrink: 0;
+      border: 1.5px solid var(--navy);
+      padding: 10px 18px;
+      text-align: center;
+    }
+    .vacancy-badge .num {
+      font-family: 'Lora', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .vacancy-badge .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ── BODY ── */
+    .advert-body {
+      padding: 36px 48px;
+    }
+    @media (max-width: 600px) {
+      .advert-body { padding: 24px 24px; }
+    }
+
+    /* ── SECTION ── */
+    .ad-section {
+      margin-bottom: 32px;
+    }
+    .ad-section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .ad-section h2 {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--green);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 14px;
+    }
+
+    .ad-section p {
+      font-size: 0.93rem;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .ad-section p:last-child { margin-bottom: 0; }
+
+    .ad-section ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ad-section ul li {
+      font-size: 0.93rem;
+      color: var(--text);
+      padding-left: 18px;
+      position: relative;
+    }
+    .ad-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* ── TWO-COL TABLE ── */
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .detail-table tr {
+      border-bottom: 1px solid var(--rule);
+    }
+    .detail-table tr:last-child { border-bottom: none; }
+    .detail-table td {
+      padding: 9px 0;
+      vertical-align: top;
+    }
+    .detail-table td:first-child {
+      width: 42%;
+      font-weight: 600;
+      color: var(--navy);
+      padding-right: 12px;
+    }
+    .detail-table td:last-child {
+      color: var(--text);
+    }
+
+    /* ── NOTE BOX ── */
+    .note-box {
+      background: #EEF5EC;
+      border-left: 3px solid var(--green);
+      padding: 14px 18px;
+      font-size: 0.88rem;
+      color: #1E3B1A;
+      margin-top: 14px;
+    }
+
+    /* ── DIVIDER ── */
+    .ad-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 32px 0;
+    }
+
+    /* ── APPLY ── */
+    .apply-bar {
+      background: var(--navy);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 600px) {
+      .apply-bar { padding: 24px 24px; flex-direction: column; align-items: stretch; text-align: center; }
+    }
+    .apply-bar .apply-text { color: rgba(255,255,255,0.85); font-size: 0.88rem; }
+    .apply-bar .apply-text strong { display: block; font-size: 1rem; color: white; margin-bottom: 3px; }
+    .apply-btn {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 13px 32px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+      flex-shrink: 0;
+    }
+    .apply-btn:hover { background: #3A9A2D; }
+
+    /* ── FOOTER ── */
+    .advert-footer {
+      padding: 16px 48px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 600px) {
+      .advert-footer { padding: 14px 24px; flex-direction: column; gap: 4px; text-align: center; }
+    }
+    .advert-footer span {
+      font-size: 0.76rem;
+      color: #8A9490;
+    }
+    .advert-footer a { color: var(--green); text-decoration: none; font-size: 0.76rem; }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="advert-header">
+    <div>
+      <div class="org-name">Aethel Connect · Connecting Communities</div>
+      <div class="job-title">Connectivity Consultant</div>
+      <div class="header-meta">
+        <div class="meta-row">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Gauteng Region &amp; Bloemfontein
+        </div>
+        <div class="meta-row">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Commission-Based · Flexible Hours
+        </div>
+        <div class="meta-row">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Posted July 2025 · Applications Close When Filled
+        </div>
+      </div>
+    </div>
+    <div class="vacancy-badge">
+      <div class="num">5</div>
+      <div class="label">Vacancies</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="advert-body">
+
+    <!-- ABOUT -->
+    <div class="ad-section">
+      <h2>About the Organisation</h2>
+      <p>Aethel Connect is a fixed wireless internet provider serving homes and businesses across Gauteng and Bloemfontein. We are committed to closing the connectivity gap in underserved South African communities.</p>
+      <p>As we expand our footprint, we are recruiting five motivated individuals to represent our brand on the ground and help more households and businesses get connected.</p>
+    </div>
+
+    <!-- POSITION SUMMARY -->
+    <div class="ad-section">
+      <h2>Position Summary</h2>
+      <p>The Connectivity Consultant is a customer-facing, commission-based role. You will introduce Aethel Connect's fixed wireless internet packages to potential customers in your area, answer basic product questions, and refer interested clients to our support team for application processing and installation. You are not responsible for technical, billing, or administrative tasks — your role is to engage, explain, and refer.</p>
+    </div>
+
+    <!-- KEY RESPONSIBILITIES -->
+    <div class="ad-section">
+      <h2>Key Responsibilities</h2>
+      <ul>
+        <li>Promote Aethel Connect fixed wireless internet packages to residential and business customers in your local area.</li>
+        <li>Provide clear, accurate explanations of available packages, pricing, and coverage to prospective clients.</li>
+        <li>Identify interested customers and direct them to the Aethel Connect support line for coverage checks, application assistance, and installation scheduling.</li>
+        <li>Maintain an up-to-date record of all leads generated and customers contacted.</li>
+        <li>Submit a written activity report every Monday morning, detailing the number of individuals approached, leads generated, and any follow-up actions required.</li>
+        <li>Represent Aethel Connect professionally and in accordance with the company's values at all times.</li>
+      </ul>
+    </div>
+
+    <!-- REMUNERATION -->
+    <div class="ad-section">
+      <h2>Remuneration</h2>
+      <p>This is a commission-based position. Consultants earn a recurring monthly commission for every client they successfully refer, for as long as that client remains an active subscriber.</p>
+      <div class="note-box">
+        Commission becomes active upon completion of the client's installation. Payouts are processed monthly. There is no cap on the number of clients you may refer — your earning potential grows directly with your active client base.
+      </div>
+    </div>
+
+    <!-- ROLE DETAILS TABLE -->
+    <div class="ad-section">
+      <h2>Role Details</h2>
+      <table class="detail-table">
+        <tr>
+          <td>Employment Type</td>
+          <td>Commission-Based (Independent Consultant)</td>
+        </tr>
+        <tr>
+          <td>Working Hours</td>
+          <td>Flexible — no fixed shifts. Work at times that suit you.</td>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td>Gauteng Region or Bloemfontein (field-based, within your own community)</td>
+        </tr>
+        <tr>
+          <td>KPIs</td>
+          <td>Performance targets apply. Weekly activity reporting is required.</td>
+        </tr>
+        <tr>
+          <td>Reporting</td>
+          <td>Written lead summary submitted every Monday morning</td>
+        </tr>
+        <tr>
+          <td>Vacancies</td>
+          <td>5 positions available</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- MINIMUM REQUIREMENTS -->
+    <div class="ad-section">
+      <h2>Minimum Requirements</h2>
+      <p>There are no formal educational or experience requirements for this position. We welcome applications from all backgrounds. The following attributes are, however, essential:</p>
+      <ul>
+        <li>Must be legally eligible to work in South Africa. South African citizens will be given preference in the selection process.</li>
+        <li>Residing in Gauteng or Bloemfontein — applicants outside these areas will not be considered.</li>
+        <li>Confident communicator with the ability to engage members of the public in a professional and friendly manner.</li>
+        <li>Self-motivated and able to work independently without daily supervision.</li>
+        <li>Able to maintain basic written records and submit a weekly report.</li>
+        <li>Access to a smartphone for communication and reporting purposes.</li>
+      </ul>
+    </div>
+
+    <!-- TRAINING AND SUPPORT -->
+    <div class="ad-section">
+      <h2>Training &amp; Support</h2>
+      <ul>
+        <li>Full product training provided prior to commencement — no prior knowledge of internet services is required.</li>
+        <li>Marketing materials, scripts, and digital assets provided to support your sales conversations.</li>
+        <li>Ongoing support from the Aethel Connect team for product queries and client escalations.</li>
+      </ul>
+    </div>
+
+  </div><!-- /advert-body -->
+
+  <!-- APPLY BAR -->
+  <div class="apply-bar">
+    <div class="apply-text">
+      <strong>Apply for this position</strong>
+      Complete the short online application form. Shortlisted candidates will be contacted within 48 hours.
+    </div>
+    <a href="https://whatsform.com/CEWK3W" target="_blank" class="apply-btn">Apply Now →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="advert-footer">
+    <span>Aethel Connect · A Division of Aethelwine Homes (Pty) Ltd · Reg. 2021/453243/07</span>
+    <a href="https://Aethelconnect.github.io">Aethelconnect.github.io</a>
+  </div>
+
+</div><!-- /page -->
+
+</body>
+</html>
